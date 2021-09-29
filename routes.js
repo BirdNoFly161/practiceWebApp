@@ -1,8 +1,10 @@
 const express= require('express');
 const User= require('./models/user');
 const path= require('path');
+const formidable= require('formidable');
 
 var jsDepdendencies= require('./routes/jsServer.js');
+const { now } = require('mongoose');
 
 var router= express.Router();
 
@@ -48,6 +50,38 @@ router.get("/visits", function(req, res){
     }
 });
 
+router.post("/newUser", function(req, res, next){
+    form= formidable({multiples: true});
+    
+    form.parse(req, function(err, fields, files){
+        if(err){
+            next(err);
+            return;
+        }
+        
+        var checkUser={}
+        User.findOne({username: fields.username}, function(err, user){
+            if(err){
+                next(err);
+            }
+            if(user){
+                console.log("nested");  
 
+                console.log(user);  
+                console.log(" found user ");  
+                return res.sendStatus(404);
+            }
+        });
+        var user=new User({
+            username: fields.username,
+            password: fields.password
+        });
+
+        user.save(next);
+        console.log("outside");
+        //res.sendStatus(200);
+
+    });
+});
 
 module.exports= router;

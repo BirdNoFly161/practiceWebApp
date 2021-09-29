@@ -20,9 +20,16 @@ var store= MongoDBStore({
 
 app.use(function(req, res, next){
     console.log(req.url);
+   /* if(req.url==='/?'){
+        console.log(req)
+    }
+    else{
+    console.log(req.url);
+    }
+    */
     next();
 });
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(express.urlencoded({extended: false}));
 app.use(session({
     secret: "RDl+1JiuB+1EwY5n+vvF1w==",
     store: store,

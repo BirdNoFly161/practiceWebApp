@@ -17,8 +17,8 @@ module.exports = class Content extends React.Component {
                         </div>
 
                         <ul className="nav navbar-nav navbar-right">
-                            <li><a href="/login">Log in</a></li>
-                            <li><a href="/signup">Sign up</a></li>
+                            <li><a href="/#/login">Log in</a></li>
+                            <li><a href="/#/signup">Sign up</a></li>
                         </ul>
 
                     </div>
