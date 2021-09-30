@@ -33,13 +33,10 @@ module.exports = class Signup extends React.Component {
             if(response.status===200){
                 this.props.history.push('/login')
             }
-            if(response.status===404){
-                this.props.history.push("/")
-            }
         }.bind(this))
         .catch(function(err){
-            console.log(err)
-        });
+            this.props.history.push("/")
+        }.bind(this));
     }
 
     render() {
